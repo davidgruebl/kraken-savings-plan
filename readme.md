@@ -6,16 +6,15 @@ Designed for efficient Dollar/Euro-Cost Averaging (DCA), this tool helps you acc
 
 ---
 
-## ⚖️ Fee Comparison
+## 🎯 Summary: What’s Best for You?
 
-Here's how Kraken API Pro = this CLI compares for buying 250€ of SOL and 250€ of BTC:
-
-
-| Platform                  | 💸 Fee Type                     | 💰 Real Cost (est.) | 📝 Notes                             |
-| ------------------------- | ------------------------------ | ------------------ | ----------------------------------- |
-| 🟢 **Kraken API (Pro)**    | Maker: 0.16% / Taker: 0.26%    | **€0.80–1.30**     | ✅ No spread, direct market access   |
-| 🟣 **Kraken Savings Plan** | Instant Buy + spread (~1–1.5%) | **€5–7**           | ❌ Higher cost via UI, hidden spread |
-| 🟠 **Trade Republic**      | €1 fee + high spread (~1–2%)   | **€6–11**          | ⚠️ Spread varies by asset and time   |
+| Criteria          | 🟢 Kraken API    | 🟣 Kraken Savings Plan | 🟠 Trade Republic       |
+| ----------------- | --------------- | --------------------- | ---------------------- |
+| 💸 **Fees**        | ✅ Lowest        | ❌ High                | ❌ High                 |
+| 📉 **Spread**      | ✅ None          | ❌ Hidden (~0.5%)      | ❌ High (~1–2%)         |
+| 🎛️ **Control**     | ✅ Full          | ❌ None                | ❌ None                 |
+| 🧠 **Ease of Use** | ⚠️ Needs setup   | ✅ Plug & play         | ✅ Plug & play          |
+| 🔒 **Trust level** | ✅ High (direct) | ✅ High                | ⚠️ Broker-based (BitGo) |
 
 ---
 
