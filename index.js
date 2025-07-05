@@ -17,9 +17,9 @@ function getKrakenSignature (path, request, nonce, secret) {
   const message = new URLSearchParams(request).toString()
   const secretBuffer = Buffer.from(secret, 'base64')
   const hash = crypto.createHash('sha256')
-  const hmac = crypto.createHmac('sha512', secretBuffer)
   const hashDigest = hash.update(nonce + message).digest()
-  const hmacDigest = hmac.update(path + hashDigest).digest('base64')
+  const hmac = crypto.createHmac('sha512', secretBuffer)
+  const hmacDigest = hmac.update(Buffer.concat([Buffer.from(path), hashDigest])).digest('base64')
   return hmacDigest
 }
 
@@ -40,14 +40,31 @@ async function getBalance () {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 
-  const response = await axios.post(
-    `${API_URL}${path}`,
-    new URLSearchParams(body),
-    {
-      headers
+  try {
+    const response = await axios.post(
+      `${API_URL}${path}`,
+      new URLSearchParams(body),
+      {
+        headers
+      }
+    )
+
+    if (response.data.error && response.data.error.length > 0) {
+      console.error('❌ Kraken API Error:', response.data.error)
+      return null
     }
-  )
-  return response.data.result
+
+    return response.data.result
+  } catch (error) {
+    console.error('🚨 Axios Error:', error.response
+      ? {
+          status: error.response.status,
+          statusText: error.response.statusText,
+          data: error.response.data
+        }
+      : error.message)
+    return null
+  }
 }
 
 async function getMarketPrice (pair) {
@@ -101,6 +118,12 @@ async function placeMarketOrder (pair, volume) {
 (async () => {
   try {
     const balance = await getBalance()
+
+    if (!balance) {
+      console.log('❌ Failed to get balance. Exiting.')
+      return
+    }
+
     console.log('Current balance:', balance)
 
     const eur = parseFloat(balance.ZEUR || '0')
