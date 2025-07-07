@@ -2,15 +2,37 @@
   "name": "kraken-savings-plan",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "A simple Node.js CLI tool to automate recurring purchases of Bitcoin (BTC) and Solana (SOL) via the Kraken Pro API with minimal fees and full control.",
   "main": "index.js",
+  "bin": {
+    "kraken-savings-plan": "index.js"
+  },
   "scripts": {
     "test": "standard",
-    "format": "standard --fix"
+    "format": "standard --fix",
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "kraken",
+    "crypto",
+    "bitcoin",
+    "solana",
+    "dca",
+    "dollar-cost-averaging",
+    "cli",
+    "trading",
+    "api"
+  ],
+  "author": "David Thomas Grübl",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidgruebl/kraken-savings-plan.git"
+  },
+  "homepage": "https://github.com/davidgruebl/kraken-savings-plan#readme",
+  "bugs": {
+    "url": "https://github.com/davidgruebl/kraken-savings-plan/issues"
+  },
   "dependencies": {
     "axios": "^1.10.0",
     "chalk": "^5.4.1",

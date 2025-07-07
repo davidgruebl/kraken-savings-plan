@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // kraken_dca.js
 import axios from 'axios'
 import crypto from 'crypto'
