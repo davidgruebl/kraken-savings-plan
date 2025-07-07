@@ -8,8 +8,8 @@ import { stdin as input, stdout as output } from 'process'
 dotenv.config()
 
 // Configuration
-const BTC_AMOUNT_EUR = 250
-const SOL_AMOUNT_EUR = 250
+const BTC_AMOUNT_EUR = parseInt(process.env.BTC_AMOUNT_EUR) || 0
+const SOL_AMOUNT_EUR = parseInt(process.env.SOL_AMOUNT_EUR) || 0
 const TOTAL_ORDER_AMOUNT = BTC_AMOUNT_EUR + SOL_AMOUNT_EUR
 
 const API_KEY = process.env.KRAKEN_API_KEY
@@ -237,10 +237,10 @@ async function testApiKey () {
       return;
     }
     // Prompt for BTC and SOL EUR amounts
-    const btcInput = await rl.question(chalk.magenta('Enter € amount to buy BTC (default 250, 0 to skip): '));
-    const solInput = await rl.question(chalk.magenta('Enter € amount to buy SOL (default 250, 0 to skip): '));
-    const btcEurAmount = btcInput.trim() === '' ? 250 : parseFloat(btcInput);
-    const solEurAmount = solInput.trim() === '' ? 250 : parseFloat(solInput);
+    const btcInput = await rl.question(chalk.magenta(`Enter € amount to buy BTC (default ${BTC_AMOUNT_EUR}, 0 to skip): `));
+    const solInput = await rl.question(chalk.magenta(`Enter € amount to buy SOL (default ${SOL_AMOUNT_EUR}, 0 to skip): `));
+    const btcEurAmount = btcInput.trim() === '' ? BTC_AMOUNT_EUR : parseFloat(btcInput);
+    const solEurAmount = solInput.trim() === '' ? SOL_AMOUNT_EUR : parseFloat(solInput);
     if (
       isNaN(btcEurAmount) || btcEurAmount < 0 ||
       isNaN(solEurAmount) || solEurAmount < 0
