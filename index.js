@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-// kraken_dca.js
 import axios from 'axios'
 import crypto from 'crypto'
 import dotenv from 'dotenv'
@@ -9,7 +8,6 @@ import readline from 'readline/promises'
 import { stdin as input, stdout as output } from 'process'
 dotenv.config()
 
-// Configuration
 const BTC_AMOUNT_EUR = parseInt(process.env.BTC_AMOUNT_EUR) || 0
 const SOL_AMOUNT_EUR = parseInt(process.env.SOL_AMOUNT_EUR) || 0
 const TOTAL_ORDER_AMOUNT = BTC_AMOUNT_EUR + SOL_AMOUNT_EUR
@@ -82,7 +80,7 @@ async function getMarketPrice (pair) {
 
 async function buyMarketForFiat (pair, eurAmount) {
   const price = await getMarketPrice(pair)
-  const volume = (eurAmount / price).toFixed(8) // 8 decimals is usually safe
+  const volume = (eurAmount / price).toFixed(8)
   console.log(`Price for ${pair}: €${price}, buying volume: ${volume}`)
   return await placeMarketOrder(pair, volume)
 }
@@ -166,7 +164,6 @@ async function testApiKey () {
 
 (async () => {
   try {
-    // Fetch and log current prices with error handling
     const pairs = [
       { name: 'SOL/USD', pair: 'SOLUSD' },
       { name: 'SOL/EUR', pair: 'SOLEUR' },
@@ -185,12 +182,10 @@ async function testApiKey () {
         return;
       }
     }
-    // Group and print market prices by asset
     console.log(chalk.bold.cyan('--- Current Market Prices ---'));
     console.log(chalk.yellow(`SOL: $${prices['SOL/USD']} / €${prices['SOL/EUR']}`));
     console.log(chalk.yellow(`BTC: $${prices['BTC/USD']} / €${prices['BTC/EUR']}`));
 
-    // Test API key first
     const apiKeyValid = await testApiKey()
     if (!apiKeyValid) {
       console.log(chalk.red('❌ API key test failed. Please check your credentials and permissions.'))
