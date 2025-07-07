@@ -1,20 +1,8 @@
-# 🪙 Kraken DCA CLI
+# 🪙 Kraken Savings Plan CLI
 
-A simple Node.js CLI tool to **automate recurring purchases of Bitcoin (BTC) and Solana (SOL)** via the **Kraken Pro API** – with minimal fees, full control, and a beautiful interface.
+A simple Node.js CLI tool to **automate recurring purchases of Bitcoin (BTC) and Solana (SOL)** via the **Kraken Pro API** – with minimal fees, full control, and a simple interface.
 
-Designed for efficient Dollar/Euro-Cost Averaging (DCA), this tool helps you accumulate crypto over time without paying hefty fees from brokers like Trade Republic or Kraken Instant Buy.
-
----
-
-## 🎯 Summary: What’s Best for You?
-
-| Criteria          | 🟢 Kraken API    | 🟣 Kraken Savings Plan | 🟠 Trade Republic       |
-| ----------------- | --------------- | --------------------- | ---------------------- |
-| 💸 **Fees**        | ✅ Lowest        | ❌ High                | ❌ High                 |
-| 📉 **Spread**      | ✅ None          | ❌ Hidden (~0.5%)      | ❌ High (~1–2%)         |
-| 🎛️ **Control**     | ✅ Full          | ❌ None                | ❌ None                 |
-| 🧠 **Ease of Use** | ⚠️ Needs setup   | ✅ Plug & play         | ✅ Plug & play          |
-| 🔒 **Trust level** | ✅ High (direct) | ✅ High                | ⚠️ Broker-based (BitGo) |
+Designed for efficient Dollar/Euro-Cost Averaging, this tool helps you accumulate crypto over time while avoiding the higher fees of standard Kraken DCA.
 
 ---
 
@@ -22,21 +10,25 @@ Designed for efficient Dollar/Euro-Cost Averaging (DCA), this tool helps you acc
 
 - ✅ **Low-fee crypto purchases** via Kraken Pro API
 - 🪄 Interactive CLI interface
-- ⏱️ Schedule daily/weekly DCA runs
 - 💰 Supports buying BTC and SOL (more coming soon)
-- 📈 Optional limit orders to save on fees (maker)
-- 🔐 Secure API key handling
 - 🧠 Smart order sizing and price checks
 
 ---
 
 ## 🚀 Getting Started
 
+### 0. Not on Kraken yet?
+
+If you use my referral code or link to try it, we'll both earn 50 EUR when you trade 200 EUR of crypto in the app!
+
+**Code:** `g49jh2ps`  
+**Link:** https://proinvite.kraken.com/9f1e/nb2p0buh
+
 ### 1. Clone the repo
 
 ```bash
-git clone git@github.com:davidgruebl/crypto.git
-cd crypto
+git clone git@github.com:davidgruebl/kraken-savings-plan.git
+cd kraken-savings-plan
 ```
 
 ### 2. Install dependencies
@@ -52,7 +44,6 @@ npm install
   - Query Funds
   - Query Open/Closed Orders & Trades
   - Create & Modify Orders
-  - (Optional but recommended: Cancel & Close Orders)
 - **Do NOT enable withdrawal permissions for security.**
 - Copy your API Key and API Secret.
 
@@ -63,6 +54,9 @@ In the project root, create a file named `.env`:
 ```
 KRAKEN_API_KEY=your_api_key_here
 KRAKEN_API_SECRET=your_api_secret_here
+# Optional: Set your default Dollar-Cost Averaging amounts (default: 0)
+BTC_AMOUNT_EUR=250
+SOL_AMOUNT_EUR=250
 ```
 
 ### 5. Run the CLI
@@ -94,7 +88,7 @@ node index.js
 
 ## 📝 Customization
 
-- You can easily add more coins or change the default DCA amounts in `index.js`.
+- You can easily add more coins or change the default Dollar-Cost Averaging amounts by setting `BTC_AMOUNT_EUR` and `SOL_AMOUNT_EUR` in your `.env` file.
 - The CLI is designed to be fun and interactive – feel free to tweak the messages or add your own!
 
 ---
